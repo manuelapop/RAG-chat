@@ -1,0 +1,8 @@
+datasets>=2.19.0
+transformers==4.46.3
+sentence-transformers==3.2.1
+faiss-cpu>=1.8.0
+gradio>=4.44.0
+torch==2.5.1
+numpy>=1.26.0
+pypdf>=4.2.0
