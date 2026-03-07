@@ -70,6 +70,13 @@ python src/ingest.py --input data/NOTEEVENTS.csv --text-column TEXT --title-colu
 python src/chat_app.py --top-k 5 --min-score 0.25
 ```
 
+Recommended run for `NOTEEVENTS.csv`:
+
+```bash
+python src/ingest.py --input data/NOTEEVENTS.csv --text-column TEXT --title-column CATEGORY --max-rows 20000 --chunk-words 600 --chunk-overlap 80 --embedding-batch-size 32
+python src/chat_app.py --model Qwen/Qwen2.5-0.5B-Instruct --max-new-tokens 160 --top-k 5 --min-score 0.2
+```
+
 Ingestion prints progress for loading rows, chunking, and embedding so long runs are visible.
 
 ## Notes
