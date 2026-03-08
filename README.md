@@ -79,9 +79,37 @@ python src/chat_app.py --model Qwen/Qwen2.5-0.5B-Instruct --max-new-tokens 160 -
 
 Ingestion prints progress for loading rows, chunking, and embedding so long runs are visible.
 
+## Quickstart for new users
+
+1) Setup environment:
+
+```bash
+cd /Users/manuelapop/rag_chat_hf
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+2) Put your own notes file in `data/` (for example `data/my_notes.csv`).
+
+3) Build index artifacts from your notes:
+
+```bash
+python src/ingest.py --input data/my_notes.csv --text-column TEXT --title-column CATEGORY --chunk-words 600 --chunk-overlap 80 --embedding-batch-size 32
+```
+
+4) Start the chat app:
+
+```bash
+python src/chat_app.py --model Qwen/Qwen2.5-0.5B-Instruct --max-new-tokens 160 --top-k 5 --min-score 0.2
+```
+
+5) Open the local URL shown in terminal (usually `http://127.0.0.1:7860`) and ask questions.
+
+Tip: run a smaller test first with `--max-rows 1000`, then increase once everything works.
+
 ## Notes
 
 - Retrieval and queries must use the same embedding model.
 - If no chunk passes `--min-score`, the app returns "I don't know" to reduce hallucinations.
 - First model load may take time due to downloads.
-# RAG-chat
